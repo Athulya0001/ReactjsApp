@@ -1,13 +1,11 @@
 import React from 'react'
-import Cards from '../components/cards'
 import { products } from '../utils/data'
-import Navbar from '../components/navbar'
+import Cards from '../components/Cards/Cards'
 
 const Home = () => {
   return (
-    <div className="flex flex-col gap-10 justify-center items-center">
+    <div className="flex flex-col gap-10 justify-center items-center mt-[60px]">
         <div>
-        <Navbar/>
         </div>
         <div className='flex justify-center items-center'>
         {products.map((product)=>
