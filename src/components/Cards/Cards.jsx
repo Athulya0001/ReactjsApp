@@ -1,19 +1,20 @@
 import React from 'react'
 // import { products } from '../../utils/data';
 
-const Cards = ({products}) => {
+const Cards = ({productData}) => {
   return (
-    <div className='flex justify-center items-center'>
-      <div className='flex flex-col w-[350px] p-5'>
-        {/* <div className='flex'>
-          <img src={image} alt="image" className='w-full h-[350px]'/>
-        </div> */}
-        <div className='flex flex-col bg-yellow-200 font-serif'>
-          {/* <p>Lorem ipsum dolor sit amet consectetur.</p> */}
-          <p className='text-xl text-center'> <span className='text-blue-900 hover:text-blue-700 cursor-pointer'>{products.title} </span>
-            <br />
-            {/* <span className='text-lg text-gray-700 hover:text-gray-500 cursor-pointer'>Price: {price}</span> */}
-             </p>
+    <div className='flex justify-center items-center  bg-slate-200 rounded-md'>
+      <div className='flex flex-col justify-center items-center w-[300px] h-[330px] p-5 gap-y-2'>
+        <div className='flex object-cover w-full h-3/5'>
+          <img src={productData.images} alt="image" className='w-full'/>
+        </div>
+        <div className='flex flex-col font-serif w-full'>
+          <p className='text-xl text-center truncate text-[#000030]'>{productData.title}</p>
+          <span className='truncate text-lg text-blue-[#000030]'>{productData.description}</span>
+        </div>
+        <div className="flex gap-x-4">
+          <span>Price: {productData.price}</span>
+          <button className='bg-[#000030] text-white rounded-md px-3 py-1'>Add to Cart</button>
         </div>
       </div>
     </div>

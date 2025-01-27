@@ -15,18 +15,22 @@ const App = () => {
   },[])
 
   async function fetchData() {
-    const products = await axios.get('https://dummyjson.com/products');
-    setProductData(products.data.products);
+    try {
+      const products = await axios.get('https://dummyjson.com/products');
+    setProductData(products.data?.products);
+    } catch (error) {
+      console.log("Error fetching data", error)
+    }
   }
-  // console.log(productData)
+  console.log(productData)
 
   return (
-    <div className="flex flex-col bg-black">
+    <div className="flex flex-col">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home productData={productData}/>} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/productList" element={<ProductList productData={productData}/>} />
+        <Route path="/cart" element={<Cart productData={productData}/>} />
+        <Route path="/productList" element={<ProductList/>} />
       </Routes>
       <Footer/>
     </div>

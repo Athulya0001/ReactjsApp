@@ -1,10 +1,10 @@
 import React from 'react'
 import Cards from '../../components/Cards/Cards'
 
-const ProductList = ({productData}) => {
+const ProductList = () => {
   return (
     <div className='mt-[60px]'>
-      <Cards products={productData}/>
+      products
     </div>
   )
 }
