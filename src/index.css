@@ -1,9 +1,1 @@
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
-
-@import "tailwindcss";
-
-.fontfam {
-    font-family: "Shadows Into Light", serif;
-    font-weight: 900;
-  font-style: normal;
-}
+@import 'tailwindcss'
