@@ -22,7 +22,7 @@ const App = () => {
       console.log("Error fetching data", error)
     }
   }
-  console.log(productData)
+  // console.log(productData)
 
   return (
     <div className="flex flex-col">
