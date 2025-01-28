@@ -1,8 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 // import { products } from '../../utils/data';
+import {CartContext} from "../../context/CartContext";
+import axios from 'axios';
 
 const Cards = ({productData}) => {
-  console.log(productData?.title)
+
+  const handleAddToCart=async(id)=>{
+    // console.log(id, "id");
+    const result = await axios.get(`https://dummyjson.com/products/${id}`);
+    // console.log(result,"result of items to add");
+    // const cartItem = result.data;
+    
+  }
 
   return (
     <div className='flex justify-center items-center  bg-slate-200 rounded-md'>
@@ -16,7 +25,9 @@ const Cards = ({productData}) => {
         </div>
         <div className="flex gap-x-4">
           <span>Price: {productData?.price}</span>
-          <button className='bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer'>Add to Cart</button>
+          <button className='bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer' onClick={()=>{
+            handleAddToCart(productData.id)
+          }}>Add to Cart </button>
         </div>
       </div>
     </div>
