@@ -5,12 +5,12 @@ import axios from 'axios';
 
 const Cards = ({productData}) => {
 
+  const {addToCart, cart} = useContext(CartContext)
   const handleAddToCart=async(id)=>{
-    // console.log(id, "id");
     const result = await axios.get(`https://dummyjson.com/products/${id}`);
-    // console.log(result,"result of items to add");
-    // const cartItem = result.data;
+    const cartItem = result.data;
     
+    addToCart(cartItem)
   }
 
   return (

@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart/Cart";
 import ProductList from "./pages/Products/ProductList";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
   return (
     <div className="flex flex-col">
       <Navbar />
+      <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home productData={productData}/>} />
         <Route path="/cart" element={<Cart productData={productData}/>} />
