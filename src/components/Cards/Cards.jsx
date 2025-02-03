@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 // import { products } from '../../utils/data';
 import {CartContext} from "../../context/CartContext";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Cards = ({productData}) => {
 
@@ -9,7 +10,7 @@ const Cards = ({productData}) => {
   const handleAddToCart=async(id)=>{
     const result = await axios.get(`https://dummyjson.com/products/${id}`);
     const cartItem = result.data;
-    
+    toast.success("Item added to cart")
     addToCart(cartItem)
   }
 
