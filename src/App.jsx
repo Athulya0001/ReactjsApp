@@ -6,8 +6,9 @@ import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart/Cart";
 import ProductList from "./pages/Products/ProductList";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { CartContext } from "./context/CartContext";
+import AuthTabs from "./pages/Auth/Auth";
 
 const App = () => {
   const {cart} = useContext(CartContext);
@@ -27,6 +28,10 @@ const App = () => {
   }
   // console.log(productData)
 
+  useEffect(()=>{
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, []);
+
   return (
     <div className="flex flex-col">
       <Navbar />
@@ -35,6 +40,8 @@ const App = () => {
         <Route path="/" element={<Home productData={productData}/>} />
         <Route path="/cart" element={<Cart productData={productData}/>} />
         <Route path="/productList" element={<ProductList/>} />
+        <Route path="/auth" element={<AuthTabs/>} />
+
       </Routes>
       <Footer/>
     </div>

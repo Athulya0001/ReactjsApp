@@ -4,9 +4,11 @@ import {CartContext} from "../../context/CartContext";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const Cards = ({productData}) => {
+const Cards = ({product}) => {
 
-  const {addToCart, cart} = useContext(CartContext)
+  const {addToCart, cart} = useContext(CartContext);
+
+  const isInCart = cart.some(item=> item.id===product.id)
   const handleAddToCart=async(id)=>{
     const result = await axios.get(`https://dummyjson.com/products/${id}`);
     const cartItem = result.data;
@@ -17,19 +19,23 @@ const Cards = ({productData}) => {
 
   return (
     <div className='flex justify-center items-center  bg-slate-200 rounded-md'>
-      <div className='flex flex-col justify-center items-center w-[300px] h-[330px] p-5 gap-y-2 hover:w-[308px] hover:h-[338px]'>
+      <div className='flex flex-col justify-center items-center w-[300px] h-[330px] p-5 gap-y-2'>
         <div className='flex object-cover w-full h-3/5'>
-          <img src={productData?.images[0]} alt="image" className='w-full'/>
+          <img src={product.images[0]} alt={product.title} className='w-full hover:'/>
         </div>
         <div className='flex flex-col font-serif w-full'>
-          <p className='text-xl text-center truncate text-[#000030]'>{productData?.title}</p>
-          <span className='truncate text-lg text-blue-[#000030]'>{productData?.description}</span>
+          <p className='text-xl text-center truncate text-[#000030]'>{product.title}</p>
+          <span className='truncate text-lg text-blue-[#000030]'>{product.description}</span>
         </div>
         <div className="flex gap-x-4">
-          <span>Price: {productData?.price}</span>
-          <button className='bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer' onClick={()=>{
-            handleAddToCart(productData.id)
-          }}>Add to Cart </button>
+          <span>Price: {product.price}</span>
+          {isInCart ? (
+            <button className='bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer'>Go to Cart </button>
+          ) : (
+            <button className='bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer' onClick={()=>{
+              handleAddToCart(product.id)
+            }}>Add to Cart </button>
+          )}
         </div>
       </div>
     </div>
