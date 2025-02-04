@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 export const CartContext = createContext();
 
 export const CartProvider = ({children})=>{
-    const [cart, setCart] = useState([]);
+    const cartData = JSON.parse(localStorage.getItem("cart"))
+    const [cart, setCart] = useState([cartData]);
     const addToCart=(newItem)=>{
         const existingItem = cart.findIndex((item)=>{
             item.id===newItem.id

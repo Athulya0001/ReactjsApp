@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Home from "./pages/Home";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
@@ -7,8 +7,10 @@ import Cart from "./pages/Cart/Cart";
 import ProductList from "./pages/Products/ProductList";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { CartContext } from "./context/CartContext";
 
 const App = () => {
+  const {cart} = useContext(CartContext);
 
   const [productData, setProductData] = useState([]);
   useEffect(()=>{

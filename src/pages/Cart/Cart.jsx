@@ -9,7 +9,7 @@ const Cart = ({ productData }) => {
         {/* <CartCard productData={productData} key={productData.id}/> */}
         <div className='flex flex-col justify-center items-center'>
           {
-            <CartCard/>
+            <CartCard key={productData.id} productData={productData}/>
           }
         </div>
       </div>
