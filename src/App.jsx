@@ -11,6 +11,7 @@ import { CartContext } from "./context/CartContext";
 import AuthTabs from "./pages/Auth/Auth";
 import Payment from "./components/Payment/Payment";
 import BuyNow from "./components/BuyNow/BuyNow";
+import ProductDetails from './components/ProductDetails/ProductDetails';
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/auth" element={<AuthTabs/>} />
         <Route path="/payment" element={<Payment/>}/>
         <Route path='/BuyNow' element={<BuyNow/>}/>
+        <Route path="/product/:id" element={<ProductDetails />} />
 
 
       </Routes>

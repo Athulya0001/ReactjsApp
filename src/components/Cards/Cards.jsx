@@ -18,44 +18,43 @@ const Cards = ({ product }) => {
   };
 
   return (
-    <div className="flex justify-center items-center  bg-slate-200 rounded-md">
-      <div className="flex flex-col justify-center items-center w-[300px] h-[330px] p-5 gap-y-2">
-        <div className="flex object-cover w-full h-3/5">
-          <img
-            src={product.images[0]}
-            alt={product.title}
-            className="w-full hover:"
-          />
-        </div>
-        <div className="flex flex-col font-serif w-full">
-          <p className="text-xl text-center truncate text-[#000030]">
-            {product.title}
-          </p>
-          <span className="truncate text-lg text-blue-[#000030]">
-            {product.description}
-          </span>
-        </div>
-        <div className="flex gap-x-4">
-          <span>Price: {product.price}</span>
-          {isInCart ? (
-            <Link to={'/cart'}>
-              <button className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer">
-                Go to Cart{" "}
-              </button>
-            </Link>
-          ) : (
-            <button
-              className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer"
-              onClick={() => {
-                handleAddToCart(product.id);
-              }}
-            >
-              Add to Cart{" "}
-            </button>
-          )}
-        </div>
+    <div className="flex justify-center items-center bg-slate-200 rounded-md p-4">
+  <div className="flex flex-col justify-between items-center w-[280px] h-[380px] p-4 gap-4">
+    <Link to={`/product/${product.id}`}>
+      <div className="flex justify-center items-center w-full h-[200px] overflow-hidden rounded-md mb-4">
+        <img
+          src={product.images[0]}
+          alt={product.title}
+          className="w-full h-full object-cover"
+        />
       </div>
+    </Link>
+
+    <div className="flex flex-col font-serif w-full text-center">
+      <p className="text-xl text-[#000030] font-semibold truncate">{product.title}</p>
+      <span className="text-lg text-gray-600 truncate mt-1">{product.description}</span>
     </div>
+
+    <div className="flex flex-col justify-center items-center w-full mt-4">
+      <span className="text-xl text-[#000030] font-bold">Price: ${product.price}</span>
+      {isInCart ? (
+        <Link to="/cart">
+          <button className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer">
+            Go to Cart
+          </button>
+        </Link>
+      ) : (
+        <button
+          className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer"
+          onClick={() => handleAddToCart(product.id)}
+        >
+          Add to Cart
+        </button>
+      )}
+    </div>
+  </div>
+</div>
+
   );
 };
 
