@@ -9,6 +9,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { CartContext } from "./context/CartContext";
 import AuthTabs from "./pages/Auth/Auth";
+import Payment from "./components/Payment/Payment";
 
 const App = () => {
   const {cart} = useContext(CartContext);
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/cart" element={<Cart productData={productData}/>} />
         <Route path="/productList" element={<ProductList/>} />
         <Route path="/auth" element={<AuthTabs/>} />
+        <Route path="/payment" element={<Payment/>}/>
 
       </Routes>
       <Footer/>

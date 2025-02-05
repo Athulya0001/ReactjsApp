@@ -23,7 +23,7 @@ const Navbar = () => {
         <Link to={'/productList'}>
         <span className='text-white hover:text-yellow-400 text-lg cursor-poniter'>Products</span>
         </Link>
-        <a href="#Account" className='text-white hover:text-yellow-400 text-lg'>Account</a>
+        <a href="/auth" className='text-white hover:text-yellow-400 text-lg'>Account</a>
       </div>
       </div>
     </div>

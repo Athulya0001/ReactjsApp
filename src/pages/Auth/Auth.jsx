@@ -10,7 +10,7 @@ const AuthTabs = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-12">
       <div className="bg-white p-6 rounded-lg shadow-md w-[400px]">
         <div className="flex justify-around mb-6 border-b border-gray-300">
           <button
@@ -28,7 +28,7 @@ const AuthTabs = () => {
         </div>
 
         {/* Tab Content */}
-        <div>
+        <div className="mt-6">
             {toggleTab==="login" ? <Login/> : <Register/>}
         </div>
       </div>
