@@ -9,6 +9,7 @@ export const CartProvider = ({children})=>{
     const cartData = JSON.parse(localStorage.getItem("cart")) || []
 
     const [cart, setCart] = useState(cartData);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
 
     useEffect(()=>{
@@ -55,15 +56,24 @@ export const CartProvider = ({children})=>{
     };
 
     const handlePayment = () => {
+        setCart([]);
+        toast.success("Order was successfull")
         setTimeout(()=>{
-            localStorage.setItem("cart", JSON.stringify([]))
-
-            toast.success("Order was successfull")
             navigate('/payment')
-        },2000)
+        },1000)
       };
+
+
+  const handleSinglePayment = (id) => {
+    const product = cart.find((item) => item.id === id);
+    setSelectedProduct(product);
+    setCart(cart.filter(item=>item.id!==id));
+        navigate('/payment')
+      
+  };
+      
 return(
-    <CartContext.Provider value={{addToCart, cart, removeFromCart, incrementQuantity, decrementQuantity, handlePayment, setCart}}>
+    <CartContext.Provider value={{addToCart, cart, removeFromCart, incrementQuantity, decrementQuantity, handlePayment, handleSinglePayment, selectedProduct}}>
         {children}
     </CartContext.Provider>
 )

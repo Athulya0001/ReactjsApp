@@ -10,6 +10,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { CartContext } from "./context/CartContext";
 import AuthTabs from "./pages/Auth/Auth";
 import Payment from "./components/Payment/Payment";
+import BuyNow from "./components/BuyNow/BuyNow";
+
 
 const App = () => {
   const {cart} = useContext(CartContext);
@@ -43,6 +45,8 @@ const App = () => {
         <Route path="/productList" element={<ProductList/>} />
         <Route path="/auth" element={<AuthTabs/>} />
         <Route path="/payment" element={<Payment/>}/>
+        <Route path='/BuyNow' element={<BuyNow/>}/>
+
 
       </Routes>
       <Footer/>

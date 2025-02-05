@@ -9,7 +9,7 @@ const Cart = () => {
 
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const shippingCharge = 16; 
+  const shippingCharge = 16;
 
 
   return (
