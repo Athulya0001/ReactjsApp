@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart/Cart";
 import ProductList from "./pages/Products/ProductList";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { CartContext } from "./context/CartContext";
 import AuthTabs from "./pages/Auth/Auth";
 import Payment from "./components/Payment/Payment";
@@ -42,12 +42,12 @@ const App = () => {
       <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home productData={productData}/>} />
-        <Route path="/cart" element={<Cart productData={productData}/>} />
+        <Route path="/cart" element={<Cart/>} />
         <Route path="/productList" element={<ProductList/>} />
         <Route path="/auth" element={<AuthTabs/>} />
         <Route path="/payment" element={<Payment/>}/>
         <Route path='/BuyNow' element={<BuyNow/>}/>
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/product/:id" element={<ProductDetails productData={productData}/>} />
 
 
       </Routes>

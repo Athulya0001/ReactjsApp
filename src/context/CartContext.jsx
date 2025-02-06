@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const CartContext = createContext();
 
+// Cart Provider
 export const CartProvider = ({children})=>{
     const navigate = useNavigate()
     const cartData = JSON.parse(localStorage.getItem("cart")) || []
@@ -16,6 +17,7 @@ export const CartProvider = ({children})=>{
         localStorage.setItem("cart", JSON.stringify(cart))
     },[cart])
 
+    // addToCart function
     const addToCart=(newItem)=>{
         const existingItem = cart.findIndex((item)=>{
             item.id===newItem.id
@@ -29,11 +31,15 @@ export const CartProvider = ({children})=>{
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
+
+    // removeFromCart function
     const removeFromCart = (id) => {
         const updatedCart = cart.filter((item) => item.id !== id);
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
     };
+
+    // incrementCart Function
     const incrementQuantity = (id) => {
         const updatedCart = cart.map((item) =>
             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
@@ -43,6 +49,7 @@ export const CartProvider = ({children})=>{
 
     };
 
+    // decrementQunatity function
     const decrementQuantity = (id) => {
         const decrementCart = cart.map((item) =>
             item.id === id
@@ -55,6 +62,7 @@ export const CartProvider = ({children})=>{
 
     };
 
+    // handlePayment function for buying whole items in the cart
     const handlePayment = () => {
         setCart([]);
         toast.success("Order was successfull")

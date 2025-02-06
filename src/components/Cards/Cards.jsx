@@ -12,14 +12,13 @@ const Cards = ({ product }) => {
   const handleAddToCart = async (id) => {
     const result = await axios.get(`https://dummyjson.com/products/${id}`);
     const cartItem = result.data;
-    console.log(cartItem, "cart items");
-    toast.success("Item added to cart");
+    toast.success(`${cartItem.title} added to cart`);
     addToCart(cartItem);
   };
 
   return (
     <div className="flex justify-center items-center bg-slate-200 rounded-md p-4">
-  <div className="flex flex-col justify-between items-center w-[280px] h-[380px] p-4 gap-4">
+  <div className="flex flex-col justify-between items-center w-[280px] h-[400px] p-4 gap-4">
     <Link to={`/product/${product.id}`}>
       <div className="flex justify-center items-center w-full h-[200px] overflow-hidden rounded-md mb-4">
         <img

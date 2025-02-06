@@ -5,13 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 const CartCard = ({ productData }) => {
   const {removeFromCart, incrementQuantity, decrementQuantity, handleSinglePayment} = useContext(CartContext);
-  console.log(productData, "products after adding to cart")
   const navigate = useNavigate();
 
-  const handleNavigateToBuyNow = () => {
-    handleSinglePayment(productData.id); // Set the selected product in context
-    navigate("/BuyNow"); // Navigate to the BuyNow page
-  };
   return (
     <div className="grid grid-cols-6 p-4 items-center w-full h-[120px] border-b border-gray-300">
       <div className="flex justify-center items-center">

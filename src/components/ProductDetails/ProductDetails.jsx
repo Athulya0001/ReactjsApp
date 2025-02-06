@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import {CartContext} from "../../context/CartContext";
 
 
-const ProductDetails = () => {
+
+const ProductDetails = ({productData}) => {
+    const {removeFromCart, incrementQuantity, decrementQuantity, handleSinglePayment} = useContext(CartContext);
+  
   const { id } = useParams(); 
   const [product, setProduct] = useState(null);
 
@@ -23,13 +27,15 @@ const ProductDetails = () => {
 
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center mt-[100px]">
+      <span>Loading...</span>
+    </div>;
   }
 
   return (
     <div className="flex flex-col items-center mt-[70px] px-4 mb-[100px]">
-      <div className="w-full max-w-3xl flex flex-col items-center mb-5">
-        <div className="w-full h-[200px] overflow-hidden rounded-md">
+      <div className=" flex flex-col items-center mb-5">
+        <div className="flex justify-center items-center w-full h-[350px] overflow-hidden rounded-md">
           <img
             src={product.images[0]}
             alt={product.title}
@@ -60,6 +66,21 @@ const ProductDetails = () => {
           Category: {product.category}
         </p>
       </div>
+      <div className="flex justify-center items-center space-x-2">
+                <button
+                    className="bg-gray-300 hover:bg-gray-400 text-black rounded-md px-2 py-1"
+                    onClick={() => decrementQuantity(productData.id)}
+                >
+                    -
+                </button>
+                <span className="text-lg font-medium">{productData.quantity}</span>
+                <button
+                    className="bg-gray-300 hover:bg-gray-400 text-black rounded-md px-2 py-1"
+                    onClick={() => incrementQuantity(productData.id)}
+                >
+                    +
+                </button>
+            </div>
       <Link to="/">
           <button className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer">
             Go Back 
