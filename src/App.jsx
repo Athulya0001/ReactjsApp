@@ -24,7 +24,7 @@ const App = () => {
 
   async function fetchData() {
     try {
-      const products = await axios.get('https://dummyjson.com/products');
+      const products = await axios.get('https://dummyjson.com/products?limit=100&skip=0');
     setProductData(products.data?.products);
     } catch (error) {
       console.log("Error fetching data", error)

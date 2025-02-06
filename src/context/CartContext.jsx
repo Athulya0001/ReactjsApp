@@ -1,11 +1,14 @@
-import {createContext, useEffect, useState} from 'react';
+import {createContext, useEffect, useState, useContext} from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { ProductContext } from "./ProductContext";
+
 
 export const CartContext = createContext();
 
 // Cart Provider
 export const CartProvider = ({children})=>{
+    const {products, getProducts} = useContext(ProductContext);
     const navigate = useNavigate()
     const cartData = JSON.parse(localStorage.getItem("cart")) || []
 
@@ -29,14 +32,12 @@ export const CartProvider = ({children})=>{
 
         const updatedCart = [...cart, { ...newItem, quantity: 1 }];
     setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
     }
 
     // removeFromCart function
     const removeFromCart = (id) => {
         const updatedCart = cart.filter((item) => item.id !== id);
         setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
     };
 
     // incrementCart Function
@@ -45,8 +46,6 @@ export const CartProvider = ({children})=>{
             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
         );
         setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-
     };
 
     // decrementQunatity function
@@ -58,8 +57,6 @@ export const CartProvider = ({children})=>{
         )
         const updatedCart = decrementCart.filter((item) => item.quantity > 0);
         setCart(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-
     };
 
     // handlePayment function for buying whole items in the cart

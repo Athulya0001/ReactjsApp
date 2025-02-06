@@ -10,7 +10,7 @@ const Cards = ({ product }) => {
 
   const isInCart = cart.some((item) => item.id === product.id);
   const handleAddToCart = async (id) => {
-    const result = await axios.get(`https://dummyjson.com/products/${id}`);
+    const result = await axios.get(`https://dummyjson.com/products?limit=100&skip=0/${id}`);
     const cartItem = result.data;
     toast.success(`${cartItem.title} added to cart`);
     addToCart(cartItem);
