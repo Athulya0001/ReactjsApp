@@ -2,6 +2,8 @@ import {createContext, useEffect, useState, useContext} from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ProductContext } from "./ProductContext";
+import axios from "axios";
+
 
 
 export const CartContext = createContext();
@@ -31,8 +33,16 @@ export const CartProvider = ({children})=>{
         }
 
         const updatedCart = [...cart, { ...newItem, quantity: 1 }];
+        console.log(updatedCart)
     setCart(updatedCart);
     }
+
+    const handleAddToCart = async (id) => {
+        const result = await axios.get(`https://dummyjson.com/products/${id}`);
+        const cartItem = result.data;
+        toast.success(`${cartItem.title} added to cart`);
+        addToCart(cartItem);
+      };
 
     // removeFromCart function
     const removeFromCart = (id) => {
@@ -78,7 +88,7 @@ export const CartProvider = ({children})=>{
   };
       
 return(
-    <CartContext.Provider value={{addToCart, cart, removeFromCart, incrementQuantity, decrementQuantity, handlePayment, handleSinglePayment, selectedProduct}}>
+    <CartContext.Provider value={{addToCart,handleAddToCart, cart, removeFromCart, incrementQuantity, decrementQuantity, handlePayment, handleSinglePayment, selectedProduct}}>
         {children}
     </CartContext.Provider>
 )

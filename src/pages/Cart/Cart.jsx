@@ -14,7 +14,7 @@ const Cart = () => {
 
   return (
     // left section
-    <div className='flex justify-center mt-[60px]'>
+    <div className='flex justify-center mt-[60px] mb-[75px]'>
           <div className="bg-[#fee] flex w-3/5  mt-[60px] text-center min-h-screen">
           <div className="flex flex-col items-center ">
           {cart && cart.length !== 0 ? (

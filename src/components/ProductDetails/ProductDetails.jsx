@@ -8,10 +8,11 @@ import {CartContext} from "../../context/CartContext";
 
 
 const ProductDetails = ({productData}) => {
-    const {removeFromCart, incrementQuantity, decrementQuantity, handleSinglePayment} = useContext(CartContext);
+    const { cart, handleAddToCart, handleSinglePayment} = useContext(CartContext);
   
   const { id } = useParams(); 
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -31,11 +32,13 @@ const ProductDetails = ({productData}) => {
       <span>Loading...</span>
     </div>;
   }
+  const cartItem = cart.some((item)=> item.id === product.id)
+
 
   return (
     <div className="flex flex-col items-center mt-[70px] px-4 mb-[100px]">
       <div className=" flex flex-col items-center mb-5">
-        <div className="flex justify-center items-center w-full h-[350px] overflow-hidden rounded-md">
+        <div className="flex justify-center items-center h-[350px] overflow-hidden rounded-md">
           <img
             src={product.images[0]}
             alt={product.title}
@@ -53,9 +56,8 @@ const ProductDetails = ({productData}) => {
   ))}
 </div>
 
-      </div>
-
-      <div className="w-full max-w-3xl">
+<div className='flex flex-col gap-y-2 justify-center items-center'>
+<div className="w-full max-w-3xl">
         <h1 className="text-3xl font-bold text-center mb-4">{product.title}</h1>
         <p className="text-lg text-gray-700 text-center">{product.description}</p>
         <p className="text-xl font-semibold text-green-600 text-center mt-2">
@@ -66,27 +68,33 @@ const ProductDetails = ({productData}) => {
           Category: {product.category}
         </p>
       </div>
-      <div className="flex justify-center items-center space-x-2">
-                <button
-                    className="bg-gray-300 hover:bg-gray-400 text-black rounded-md px-2 py-1"
-                    onClick={() => decrementQuantity(productData.id)}
-                >
-                    -
-                </button>
-                <span className="text-lg font-medium">{productData.quantity}</span>
-                <button
-                    className="bg-gray-300 hover:bg-gray-400 text-black rounded-md px-2 py-1"
-                    onClick={() => incrementQuantity(productData.id)}
-                >
-                    +
-                </button>
-            </div>
+      <div className="flex justify-center items-center gap-x-5">
+      {cartItem ? (
+        <Link to="/cart">
+          <button className="bg-[#000030] hover:bg-[#000050] text-white rounded-md px-3 py-1 cursor-pointer">
+            Go to Cart
+          </button>
+        </Link>
+      ) : (
+        <button
+          className="bg-[#000030] hover:bg-[#000050] text-white rounded-md px-3 py-1 cursor-pointer"
+          onClick={() => handleAddToCart(product.id)}
+        >
+          Add to Cart
+        </button>
+      )}
       <Link to="/">
-          <button className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer">
+          <button className="bg-[#219001] hover:bg-[#236020] text-white rounded-md px-3 py-1 cursor-pointer">
             Go Back 
           </button>
         </Link>
+      </div>
     </div>
+</div>
+
+      </div>
+
+      
   );
 };
 

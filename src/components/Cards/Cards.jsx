@@ -6,15 +6,9 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const Cards = ({ product }) => {
-  const { addToCart, cart } = useContext(CartContext);
+  const { addToCart, cart, handleAddToCart } = useContext(CartContext);
 
   const isInCart = cart.some((item) => item.id === product.id);
-  const handleAddToCart = async (id) => {
-    const result = await axios.get(`https://dummyjson.com/products?limit=100&skip=0/${id}`);
-    const cartItem = result.data;
-    toast.success(`${cartItem.title} added to cart`);
-    addToCart(cartItem);
-  };
 
   return (
     <div className="flex justify-center items-center bg-slate-200 rounded-md p-4">
