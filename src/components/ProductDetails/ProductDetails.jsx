@@ -8,12 +8,11 @@ import {CartContext} from "../../context/CartContext";
 
 
 const ProductDetails = ({productData}) => {
-    const { cart, handleAddToCart, handleSinglePayment} = useContext(CartContext);
+    const { cart} = useContext(CartContext);
   
   const { id } = useParams(); 
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1);
-
+  const [selectedImage, setSelectedImage] = useState(null);
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -39,22 +38,31 @@ const ProductDetails = ({productData}) => {
     <div className="flex flex-col items-center mt-[70px] px-4 mb-[100px]">
       <div className=" flex flex-col items-center mb-5">
         <div className="flex justify-center items-center h-[350px] overflow-hidden rounded-md">
-          <img
+          {selectedImage===null ? (<img
             src={product.images[0]}
             alt={product.title}
             className="w-full h-full object-cover"
-          />
+          />):(<img
+            src={selectedImage}
+            alt={product.title}
+            className="w-full h-full object-cover"
+          />)}
         </div>
         <div className="flex gap-4 mt-4">
-  {product.images.map((image, index) => (
-    <img
-      key={index}
-      src={image}
-      alt={`Product ${index}`}
-      className="w-20 h-20 object-cover rounded-md border border-gray-300"
-    />
-  ))}
-</div>
+          {product.images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Product ${index}`}
+              className={`w-20 h-20 object-cover rounded-md border ${
+                selectedImage === image
+                  ? "border-blue-500"
+                  : "border-gray-300"
+              } cursor-pointer`}
+              onClick={() => setSelectedImage(image)}
+            />
+          ))}
+        </div>
 
 <div className='flex flex-col gap-y-2 justify-center items-center'>
 <div className="w-full max-w-3xl">
