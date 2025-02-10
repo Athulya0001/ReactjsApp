@@ -9,48 +9,49 @@ const Cards = ({ product }) => {
   const isInCart = cart.some((item) => item.id === product.id);
 
   return (
-    <div className="flex justify-center items-center bg-slate-200 rounded-md p-4  w-[300px] h-[400px] ">
-      <div className="flex flex-col justify-between items-center w-[300px] h-[400px] p-4 gap-4">
-        <Link to={`/product/${product.id}`}>
-          <div className="flex justify-center items-center w-full h-[200px] overflow-hidden rounded-md mb-4">
-            <img
-              src={product.images[0]}
-              alt={product.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </Link>
-
-        <div className="flex flex-col font-serif w-full text-center">
-          <p className="text-xl text-[#000030] font-semibold truncate">
-            {product.title}
-          </p>
-          <span className="text-lg text-gray-600 truncate mt-1">
-            {product.description}
-          </span>
-        </div>
-
-        <div className="flex flex-col justify-center items-center w-full mt-4">
-          <span className="text-xl text-[#000030] font-bold">
-            Price: ${product.price}
-          </span>
-          {isInCart ? (
-            <Link to="/cart">
-              <button className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer">
-                Go to Cart
-              </button>
-            </Link>
-          ) : (
-            <button
-              className="bg-[#000030] text-white rounded-md px-3 py-1 cursor-pointer"
-              onClick={() => handleAddToCart(product.id)}
-            >
-              Add to Cart
-            </button>
-          )}
-        </div>
-      </div>
+    <div className="flex flex-col bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-[300px] h-[420px]">
+  <Link to={`/product/${product.id}`} className="relative ">
+    <div className="w-full h-[220px] overflow-hidden">
+      <img
+        src={product.images[0]}
+        alt={product.title}
+        className="w-full h-full object-cover transition-transform duration-300 ease-in-out hover:scale-110"
+      />
     </div>
+  </Link>
+
+  <div className="flex flex-col p-4 gap-3 h-full">
+    <div className="text-center">
+      <p className="text-lg text-gray-800 font-semibold truncate">
+        {product.title}
+      </p>
+      <p className="text-sm text-gray-600 truncate mt-1">
+        {product.description}
+      </p>
+    </div>
+
+    <div className="flex items-center justify-between mt-auto">
+      <span className="text-lg text-[#000030] font-bold">
+        ${product.price}
+      </span>
+      {isInCart ? (
+        <Link to="/cart">
+          <button className="bg-blue-600 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition-colors">
+            Go to Cart
+          </button>
+        </Link>
+      ) : (
+        <button
+          onClick={() => handleAddToCart(product.id)}
+          className="bg-blue-600 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition-colors"
+        >
+          Add to Cart
+        </button>
+      )}
+    </div>
+  </div>
+</div>
+
   );
 };
 

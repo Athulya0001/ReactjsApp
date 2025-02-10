@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext";
 
 const Navbar = ({ productData }) => {
-  const { selectedCategory, setSelectedCategory } = useContext(ProductContext);
+  const { selectedCategory, setSelectedCategory, setSearchQuery } =
+  useContext(ProductContext);
+
 
   const categories = [
     "all",
@@ -19,6 +21,13 @@ const Navbar = ({ productData }) => {
             <h1 className="fontfam text-yellow-500 text-4xl">Munchkins</h1>
           </div>
         </Link>
+
+        <input
+        type="text"
+        placeholder="Search by title or category..."
+        className="border border-gray-300 rounded-lg shadow-sm px-4 py-2 text-gray-700 focus:outline-none focus:ring focus:ring-blue-200 w-1/5"
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
 
         <div className="flex justify-evenly items-center gap-4">
           <div className="flex justify-center">

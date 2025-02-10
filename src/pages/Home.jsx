@@ -3,25 +3,28 @@ import Cards from "../components/Cards/Cards";
 import { ProductContext } from "../context/ProductContext";
 
 const Home = ({ productData }) => {
-  const {selectedCategory}=useContext(ProductContext);
+  const { selectedCategory, setSelectedCategory } = useContext(ProductContext);
+  const { searchQuery } = useContext(ProductContext);
 
+  const categories = ["all", ...new Set(productData.map((product) => product.category))];
 
   const filteredProducts =
     selectedCategory === "all"
       ? productData
-      : productData.filter((product) => product.category === selectedCategory);
+      : productData.filter((product) => {
+        product.category === selectedCategory;
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchQuery.toLowerCase())
+      });
 
   return (
-    <div className='my-[60px]'>
-      {/* Dropdown to select category */}
-      
-
-      {/* Render filtered products */}
-      <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-w-[100vw] mx-20 gap-10 items-center mt-[20px]">
+    <div className="flex justify-center items-center my-16 px-5 sm:px-10 lg:px-20">
+      <div className="flex flex-wrap justify-center items-center gap-6">
         {filteredProducts.map((product) => (
           <Cards key={product.id} product={product} />
         ))}
       </div>
+
     </div>
   );
 };
