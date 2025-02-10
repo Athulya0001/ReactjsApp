@@ -1,12 +1,11 @@
-import React, {useState, useContext} from "react";
+import React, { useContext} from "react";
 import Cards from "../components/Cards/Cards";
+import { ProductContext } from "../context/ProductContext";
 
 const Home = ({ productData }) => {
+  const {selectedCategory}=useContext(ProductContext);
 
-  // Extract unique categories
-  const categories = ["all", ...new Set(productData.map((product) => product.category))];
 
-  // Filter products based on the selected category
   const filteredProducts =
     selectedCategory === "all"
       ? productData
@@ -15,22 +14,10 @@ const Home = ({ productData }) => {
   return (
     <div className='my-[60px]'>
       {/* Dropdown to select category */}
-      <div className="flex justify-center mt-5">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border rounded-md p-2"
-        >
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </option>
-          ))}
-        </select>
-      </div>
+      
 
       {/* Render filtered products */}
-      <div className="flex flex-wrap gap-10 justify-center items-center mt-[20px]">
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-w-[100vw] mx-20 gap-10 items-center mt-[20px]">
         {filteredProducts.map((product) => (
           <Cards key={product.id} product={product} />
         ))}

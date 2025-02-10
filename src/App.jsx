@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col">
-      <Navbar />
+      <Navbar productData={productData}/>
       <ToastContainer/>
       <Routes>
         <Route path="/" element={<Home productData={productData}/>} />
