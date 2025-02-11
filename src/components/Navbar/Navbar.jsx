@@ -25,8 +25,9 @@ const Navbar = ({ productData }) => {
         <input
         type="text"
         placeholder="Search by title or category..."
-        className="border border-gray-300 rounded-lg shadow-sm px-4 py-2 text-gray-700 focus:outline-none focus:ring focus:ring-blue-200 w-1/5"
-        onChange={(e) => setSearchQuery(e.target.value)}
+        className="border border-gray-300 rounded-lg shadow-sm px-4 py-2 focus:outline-none focus:ring focus:ring-blue-200 w-1/5 text-white"
+        onChange={(e) => setSearchQuery(e.target.value)
+        }
       />
 
         <div className="flex justify-evenly items-center gap-4">
